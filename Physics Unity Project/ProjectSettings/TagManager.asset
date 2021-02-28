@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall Spring
   - Floor Spring
+  - Wall
   layers:
   - Default
   - TransparentFX

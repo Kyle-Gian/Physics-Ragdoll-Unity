@@ -1,22 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerRespawn : MonoBehaviour
 {
-    GameObject player = null;
     Vector3 startPos;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-
-        startPos = player.transform.position;
+        startPos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
     }
 
-    void SpawnPlayer()
+    public void SpawnPlayer()
     {
-        player.transform.position = startPos;
+        Ragdoll r = this.gameObject.GetComponentInParent<Ragdoll>();
+        r.RagdollOn = false;
+        if (this.transform.position != startPos)
+        {
+            this.transform.position = startPos;
+
+        }
+    }
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }

@@ -6,6 +6,7 @@ public class PlayerCamera : MonoBehaviour
 {
     GameObject player = null;
     Camera cam = null;
+    Transform obstruction = null;
 
     [SerializeField]
     float Y_ANGLE_MIN = 120.0f;
@@ -22,7 +23,6 @@ public class PlayerCamera : MonoBehaviour
     float currentX = 0.0f;
     float currentY = 0.0f;
 
-    public Transform obstruction = null;
     float zoomSpeed = 2.0f;
 
 
@@ -43,11 +43,12 @@ public class PlayerCamera : MonoBehaviour
 
         currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
         
-
-    }
+   }
 
     private void LateUpdate()
     {
+
+
         Vector3 dir = new Vector3(0, 0, - distance);
 
         Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
@@ -55,34 +56,43 @@ public class PlayerCamera : MonoBehaviour
         cam.transform.position = player.transform.position + rotation * dir;
 
         cam.transform.LookAt(player.transform.position);
-        ViewObstructed();
+
+        //ViewObstructed();
+
     }
 
     void ViewObstructed()
     {
 
-        if (Physics.Raycast(transform.position, player.transform.position, out RaycastHit info, 4.5f))
+        Vector3 playerPos = player.transform.position;
+
+        Ray ray = cam.ScreenPointToRay(playerPos);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 7f))
         {
 
-            if (info.collider.gameObject.tag != "Player")
+            if (hit.collider.gameObject.tag != "Player")
             {
-                obstruction = info.transform;
-                obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-                if (Vector3.Distance(obstruction.position, transform.position) >=1f && Vector3.Distance(transform.position, player.transform.position) >= 0.5f)
+                obstruction = hit.transform;
+                if (obstruction.gameObject.GetComponent<MeshRenderer>() != null)
                 {
-                    transform.Translate(Vector3.forward * zoomSpeed * Time.deltaTime);
+                    obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+                    if (Vector3.Distance(obstruction.position, transform.position) >= 1f && Vector3.Distance(transform.position, player.transform.position) >= 0.5f)
+                    {
+                        transform.Translate(Vector3.forward * zoomSpeed * Time.deltaTime);
+                    }
                 }
             }
         }
         else
         {
             obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-            if (Vector3.Distance(transform.position, player.transform .position) < 4.5f)
+            if (Vector3.Distance(transform.position, player.transform.position) < 4.5f)
             {
                 transform.Translate(Vector3.back * zoomSpeed * Time.deltaTime);
 
-            }
-
+            }       
         }
     }
 }

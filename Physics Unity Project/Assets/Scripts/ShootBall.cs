@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(Rigidbody))]
-
 public class ShootBall : MonoBehaviour
 {
-    Rigidbody rb = null;
-    public float speed = 50;
+    [SerializeField]
+    GameObject bulletPrefab = null;
+
+    [SerializeField]
+    float SpawnStart = 1f;
+    [SerializeField]
+    float SpawnTimer = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        InvokeRepeating("SpawnBullets", SpawnStart, SpawnTimer);
+
     }
 
-    // Update is called once per frame
-    void Update()
+    void SpawnBullets()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            rb.AddForce(0, 10, speed);
-        }
+        Instantiate(bulletPrefab, this.transform.position, new Quaternion());
+
     }
 }

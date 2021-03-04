@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TriggerDoor : MonoBehaviour
 {
+    [SerializeField]
     PlaceObject placeObject;
     ConfigurableJoint configurableJoint = null;
     // Start is called before the first frame update
@@ -13,8 +14,11 @@ public class TriggerDoor : MonoBehaviour
         {
             configurableJoint = GetComponent<ConfigurableJoint>();
         }
+        if (placeObject != null)
+        {
+            placeObject = GameObject.FindGameObjectWithTag("Floor Plate").GetComponent<PlaceObject>();
 
-        placeObject = GameObject.FindGameObjectWithTag("Floor Plate").GetComponent<PlaceObject>();
+        }
     }
 
     // Update is called once per frame

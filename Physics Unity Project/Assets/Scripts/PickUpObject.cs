@@ -6,12 +6,11 @@ public class PickUpObject : MonoBehaviour
 {
     GameObject pickUp = null;
     GameObject player = null;
+    Vector3 pos = new Vector3(200,200,0);
 
-    float mousePosX, mousePosY;
     // Start is called before the first frame update
     void Start()
     {
-        pickUp = GameObject.FindGameObjectWithTag("Weight");
         player = GameObject.FindGameObjectWithTag("Player");
 
     }
@@ -22,18 +21,18 @@ public class PickUpObject : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;
-        Debug.DrawRay(Camera.main.transform.position, Input.mousePosition.normalized);
+        Debug.DrawRay(ray.origin, ray.direction, Color.red);
 
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo, 30))
         {
-            if (hitInfo.collider.gameObject == pickUp)
+            if (hitInfo.collider.gameObject == this.gameObject)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    pickUp.transform.parent = player.transform;
-                    pickUp.transform.localPosition = new Vector3(0.2f, 1, 0);
-                    pickUp.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                    this.transform.parent = player.transform;
+                    this.transform.localPosition = new Vector3(0.2f, 1, 0);
+                    this.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
                 }
 

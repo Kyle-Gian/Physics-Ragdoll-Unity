@@ -33,5 +33,14 @@ public class PlaceObject : MonoBehaviour
             }
 
         }
+
+        if (other.gameObject == pickUp)
+        {
+                pickUp.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                pickUp.transform.parent = this.transform;
+                pickUp.transform.localPosition = new Vector3(0, 40, 0);
+                pickUpPlaced = true;
+
+        }
     }
 }

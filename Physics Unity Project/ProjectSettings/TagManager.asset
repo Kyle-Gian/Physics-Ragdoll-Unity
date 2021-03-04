@@ -8,6 +8,9 @@ TagManager:
   - Floor Spring
   - Wall
   - Game Manager
+  - Raising Door
+  - Floor Plate
+  - Weight
   layers:
   - Default
   - TransparentFX

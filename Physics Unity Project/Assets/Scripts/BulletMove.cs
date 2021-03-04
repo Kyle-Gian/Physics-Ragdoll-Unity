@@ -7,7 +7,11 @@ using UnityEngine;
 public class BulletMove : MonoBehaviour
 {
     Rigidbody rb = null;
+    [SerializeField]
     public float speed = 50;
+
+    [SerializeField]
+    float DestroyAtDistance = 70;
 
     // Start is called before the first frame update
     void Start()
@@ -19,5 +23,14 @@ public class BulletMove : MonoBehaviour
     void Update()
     {
         rb.AddForce(0, 0, speed);
+        DestroyBullet();
+    }
+
+    private void DestroyBullet()
+    {
+        if (this.transform.position.z >= DestroyAtDistance)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

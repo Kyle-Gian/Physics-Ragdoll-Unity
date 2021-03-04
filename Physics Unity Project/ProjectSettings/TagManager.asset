@@ -11,6 +11,7 @@ TagManager:
   - Raising Door
   - Floor Plate
   - Weight
+  - Pick Up
   layers:
   - Default
   - TransparentFX

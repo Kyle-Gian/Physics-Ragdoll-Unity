@@ -16,26 +16,7 @@ public class RagdollTrigger : MonoBehaviour
             configurableJoint = GetComponent<ConfigurableJoint>();
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (configurableJoint != null)
-        {
-            if (CompareTag("Floor Spring"))
-            {
-                configurableJoint.targetPosition = new Vector3(0, 0, 0);
-                JointDrive yDrive = configurableJoint.yDrive;
-                yDrive.maximumForce = 0f;
-            }
 
-            if (CompareTag("Wall Spring"))
-            {
-                configurableJoint.targetPosition = new Vector3(0, 0, 0);
-                JointDrive yDrive = configurableJoint.yDrive;
-                yDrive.maximumForce = 0f;
-
-            }
-        }
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (configurableJoint != null)
@@ -43,12 +24,6 @@ public class RagdollTrigger : MonoBehaviour
             if (CompareTag("Floor Spring"))
             {
                 configurableJoint.targetPosition = new Vector3(0, 40, 0);
-            }
-
-            if (CompareTag("Wall Spring"))
-            {
-                configurableJoint.targetPosition = new Vector3(0, 0, 40);
-
             }
         }
         Ragdoll r = other.gameObject.GetComponentInParent<Ragdoll>();

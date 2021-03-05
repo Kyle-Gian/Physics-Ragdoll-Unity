@@ -12,6 +12,12 @@ TagManager:
   - Floor Plate
   - Weight
   - Pick Up
+  - Button
+  - Finish Line
+  - Restart Game
+  - Game Completed Text
+  - Restart Button
+  - Exit Button
   layers:
   - Default
   - TransparentFX

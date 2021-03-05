@@ -33,7 +33,6 @@ public class PlaceObject : MonoBehaviour
 
         if (other.gameObject == pickUp)
         {
-            pickUp.transform.parent = this.transform;
             pickUp.GetComponent<Rigidbody>().isKinematic = true;
             pickUpPlaced = true;
 

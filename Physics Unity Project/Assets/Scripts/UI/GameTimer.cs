@@ -29,6 +29,8 @@ public class GameTimer : MonoBehaviour
         restartButton.gameObject.SetActive(false);
         exitButton.gameObject.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
+
 
     }
 

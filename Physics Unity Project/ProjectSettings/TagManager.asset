@@ -18,6 +18,10 @@ TagManager:
   - Game Completed Text
   - Restart Button
   - Exit Button
+  - Start Canvas
+  - 2nd Room
+  - 3rd Room
+  - Final Stretch
   layers:
   - Default
   - TransparentFX

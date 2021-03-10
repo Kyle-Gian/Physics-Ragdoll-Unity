@@ -2,39 +2,105 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class Overlays
+{
+    [SerializeField]
+    string id;
+    [SerializeField]
+    Canvas canvas;
+
+    public Overlays(string a_id, Canvas a_canvas)
+    {
+        id = a_id;
+        canvas = a_canvas;
+    }
+    public Overlays(Canvas a_canvas)
+    {
+        canvas = a_canvas;
+        if (canvas.gameObject.tag != null)
+        {
+            id = canvas.gameObject.tag;
+        }
+        else
+        {
+            id = "null";
+        }
+
+    }
+
+    string GetID()
+    {
+        return id;
+    }
+    public void SetID(string a_id)
+    {
+        id = a_id;
+
+    }
+    Canvas GetCanvas()
+    {
+        return canvas;
+    }
+    void SetCanvas(Canvas a_canvas)
+    {
+        canvas = a_canvas;
+    }
+}
 public class StoredOverlays : MonoBehaviour
 {
     [SerializeField]
-    bool autoAddCanvases = false;
-    public List<Canvas> storeOverlays;
+    bool autoAddOverlays = false;
+
+    public List<Overlays> storedOverlays;
+
+    [SerializeField]
+    Canvas playerOverlay;
+    [SerializeField]
+    Canvas pauseMenu;
 
     Canvas[] getCanvases;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (pauseMenu != null)
+        {
+            storedOverlays.Add(new Overlays(pauseMenu));
+        }
+        if (playerOverlay != null)
+        {
+            storedOverlays.Add(new Overlays(playerOverlay));
+        }
 
         getCanvases = GameObject.FindObjectsOfType<Canvas>();
         //if no canvases have been added to list then populate list with overlays
-        if (storeOverlays == null && autoAddCanvases == true)
-        {
+        //if (storedOverlays.Count == 0 && autoAddOverlays == true)
+        //{
 
-            for (int i = 0; i < getCanvases.Length; i++)
-            {
-                storeOverlays.Add(getCanvases[i]);
+        //    for (int i = 0; i < getCanvases.Length; i++)
+        //    {
+        //        if (getCanvases[i].gameObject.tag == null)
+        //        {
+        //            storedOverlays.Add(new Overlays(getCanvases[i]));
 
-            }
-            storeOverlays.Sort();
-        }
+        //        }
+        //        else
+        //        {
+
+        //        }
+
+        //    }
+        //}
 
         //Let the user know there may be missing canvases
-        if (storeOverlays.Count != getCanvases.Length)
+        if (storedOverlays.Count != getCanvases.Length)
         {
             Debug.Log("Some Canvases are missing. Potential for Canvases not working as intended.");
         }
 
         //If the list is empty notify user
-        if (storeOverlays == null)
+        if (storedOverlays.Count == 0)
         {
             Debug.Log("No Canvases Added to Game Scene");
         }

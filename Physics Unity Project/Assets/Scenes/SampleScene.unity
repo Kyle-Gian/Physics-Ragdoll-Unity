@@ -7038,8 +7038,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357e747a8f31cfc49a93809761da629f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoAddCanvases: 1
-  storeOverlays: []
+  autoAddOverlays: 0
+  storedOverlays:
+  - id: 
+    canvas: {fileID: 0}
+  - id: 
+    canvas: {fileID: 0}
+  playerOverlay: {fileID: 0}
+  pauseMenu: {fileID: 0}
 --- !u!4 &998261065
 Transform:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChangeOverlays : MonoBehaviour
 {
     StoredOverlays storedOverlays = null;
+    Canvas canvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,7 @@ public class ChangeOverlays : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //SetCanvasToActive(storedOverlays.storeOverlays.);
+            SetCanvasToActive(storedOverlays.storeOverlays;
         }
         
     }

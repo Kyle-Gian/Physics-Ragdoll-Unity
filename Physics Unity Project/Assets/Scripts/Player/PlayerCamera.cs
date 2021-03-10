@@ -6,7 +6,6 @@ public class PlayerCamera : MonoBehaviour
 {
     GameObject player = null;
     Camera cam = null;
-    Transform obstruction = null;
     [SerializeField]
     Vector3 camPos;
 
@@ -20,9 +19,6 @@ public class PlayerCamera : MonoBehaviour
 
     float currentX = 0.0f;
     float currentY = 0.0f;
-
-    float zoomSpeed = 2.0f;
-
 
 
     // Start is called before the first frame update

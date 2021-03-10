@@ -15,4 +15,9 @@ public class LoadScene : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void MainMenu()
+    {
+
+    }
 }

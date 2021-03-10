@@ -11,7 +11,7 @@ public class BulletMove : MonoBehaviour
     public float speed = 50;
 
     [SerializeField]
-    float DestroyAtDistance = 70;
+    float DestroyAtDistance = 140;
 
     // Start is called before the first frame update
     void Start()

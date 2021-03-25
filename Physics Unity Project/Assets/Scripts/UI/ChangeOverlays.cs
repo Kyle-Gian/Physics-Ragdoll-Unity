@@ -22,7 +22,7 @@ public class ChangeOverlays : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SetCanvasToActive(storedOverlays.storeOverlays;
+            //SetCanvasToActive(storedOverlays.storeOverlays;
         }
         
     }

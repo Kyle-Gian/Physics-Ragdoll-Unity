@@ -74,24 +74,6 @@ public class StoredOverlays : MonoBehaviour
         }
 
         getCanvases = GameObject.FindObjectsOfType<Canvas>();
-        //if no canvases have been added to list then populate list with overlays
-        //if (storedOverlays.Count == 0 && autoAddOverlays == true)
-        //{
-
-        //    for (int i = 0; i < getCanvases.Length; i++)
-        //    {
-        //        if (getCanvases[i].gameObject.tag == null)
-        //        {
-        //            storedOverlays.Add(new Overlays(getCanvases[i]));
-
-        //        }
-        //        else
-        //        {
-
-        //        }
-
-        //    }
-        //}
 
         //Let the user know there may be missing canvases
         if (storedOverlays.Count != getCanvases.Length)

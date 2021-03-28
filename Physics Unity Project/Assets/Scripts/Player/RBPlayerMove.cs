@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RBPlayerMove : MonoBehaviour
 {
-    Rigidbody rb = null;
-    //CharacterController controller = null;
+    //Rigidbody rb = null;
+    CharacterController controller = null;
     Animator animator = null;
 
     public float speed = 80.0f;
@@ -13,9 +13,9 @@ public class RBPlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        //controller = GetComponent<CharacterController>();
+        controller = GetComponent<CharacterController>();
 
     }
 
@@ -29,14 +29,15 @@ public class RBPlayerMove : MonoBehaviour
 
         //controller.SimpleMove(transform.up * Time.fixedDeltaTime);
 
-        rb.AddForce(transform.up * speed * Time.fixedDeltaTime);
+        //rb.AddForce(transform.up * speed * Time.fixedDeltaTime);
         
         animator.SetFloat("Ypos", vertical * speed * Time.fixedDeltaTime);
         animator.SetFloat("Xpos", horizontal * speed * Time.fixedDeltaTime);
 
+        Vector3 move = transform.right * horizontal + transform.forward * vertical;
+        //move = Vector3.ClampMagnitude(move, 1f);
 
-
-        //controller.SimpleMove(transform.forward * vertical * speed * Time.fixedDeltaTime);
+        controller.SimpleMove(move * speed * Time.fixedDeltaTime);
         transform.Rotate(0, MouseX, 0);
     }
 

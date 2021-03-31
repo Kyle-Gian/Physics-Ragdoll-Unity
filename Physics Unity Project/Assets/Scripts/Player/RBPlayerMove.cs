@@ -8,7 +8,7 @@ public class RBPlayerMove : MonoBehaviour
     CharacterController controller = null;
     Animator animator = null;
 
-    public float speed = 80.0f;
+    public float speed = 3.0f;
     public float pushPower = 2.0f;
     // Start is called before the first frame update
     void Start()
@@ -26,18 +26,15 @@ public class RBPlayerMove : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
 
         float MouseX = Input.GetAxis("Mouse X");
-
-        //controller.SimpleMove(transform.up * Time.fixedDeltaTime);
-
-        //rb.AddForce(transform.up * speed * Time.fixedDeltaTime);
         
-        animator.SetFloat("Ypos", vertical * speed * Time.fixedDeltaTime);
-        animator.SetFloat("Xpos", horizontal * speed * Time.fixedDeltaTime);
+        animator.SetFloat("Ypos", vertical);
+        animator.SetFloat("Xpos", horizontal);
+        animator.SetFloat("Speed", speed);
+
 
         Vector3 move = transform.right * horizontal + transform.forward * vertical;
-        //move = Vector3.ClampMagnitude(move, 1f);
-
-        controller.SimpleMove(move * speed * Time.fixedDeltaTime);
+        move = Vector3.ClampMagnitude(move, 1f);
+        controller.Move(move * speed * Time.fixedDeltaTime);
         transform.Rotate(0, MouseX, 0);
     }
 

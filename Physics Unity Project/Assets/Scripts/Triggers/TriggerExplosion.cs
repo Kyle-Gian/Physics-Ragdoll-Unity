@@ -20,6 +20,10 @@ public class TriggerExplosion : MonoBehaviour
     [SerializeField]
     Transform launchPosition2 = null;
 
+    ParticleSystem particleSystem1 = null;
+    ParticleSystem particleSystem2 = null;
+
+
     PlaceObject objPlacement1 = null;
     PlaceObject objPlacement2 = null;
 
@@ -42,6 +46,14 @@ public class TriggerExplosion : MonoBehaviour
             objPlacement2 = objTrigger2.GetComponent<PlaceObject>();
 
         }
+
+        particleSystem1 = launchPosition1.GetComponent<ParticleSystem>();
+        particleSystem2 = launchPosition2.GetComponent<ParticleSystem>();
+
+
+        particleSystem1.gameObject.SetActive(false);
+        particleSystem2.gameObject.SetActive(false);
+
 
     }
 
@@ -91,6 +103,9 @@ public class TriggerExplosion : MonoBehaviour
         {
             Instantiate(rocket, launchPosition1.position, Quaternion.identity);
             Instantiate(rocket, launchPosition2.position, Quaternion.identity);
+            launchPosition1.GetComponent<ParticleSystem>().gameObject.SetActive(true);
+            launchPosition2.GetComponent<ParticleSystem>().gameObject.SetActive(true);
+
 
         }
     }

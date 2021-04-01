@@ -5,7 +5,7 @@ using UnityEngine;
 public class TriggerInstructions : MonoBehaviour
 {
     [SerializeField]
-    Canvas canvas;
+    Canvas canvas = null;
     // Start is called before the first frame update
     void Start()
     {

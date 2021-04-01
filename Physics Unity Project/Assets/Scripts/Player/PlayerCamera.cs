@@ -7,7 +7,7 @@ public class PlayerCamera : MonoBehaviour
     GameObject player = null;
     Camera cam = null;
     [SerializeField]
-    Vector3 camPos;
+    Vector3 camPos = new Vector3();
 
     [SerializeField]
     float Y_ANGLE_MIN = 120.0f;

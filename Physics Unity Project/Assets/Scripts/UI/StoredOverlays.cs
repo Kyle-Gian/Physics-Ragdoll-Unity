@@ -55,7 +55,7 @@ public class StoredOverlays : MonoBehaviour
     public List<Overlays> storedOverlays;
 
     [SerializeField]
-    Canvas playerOverlay;
+    Canvas playerOverlay = null;
     [SerializeField]
     Canvas pauseMenu;
 

@@ -17,12 +17,14 @@ public class PuzzleScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_listOfColors.Add(new Color32(114, 0, 255,255));
-        m_listOfColors.Add(new Color32(255, 36, 0,255));
-        m_listOfColors.Add(new Color32(59, 250, 4,255));
-        m_listOfColors.Add(new Color32(0, 248, 255,255));
-        m_listOfColors.Add(new Color32(255, 246, 0,255));
+        // Add colors that are on the images to list
+        m_listOfColors.Add(new Color32(114, 0, 255, 255));
+        m_listOfColors.Add(new Color32(59, 250, 4, 255));
+        m_listOfColors.Add(new Color32(255, 36, 0, 255));
+        m_listOfColors.Add(new Color32(0, 248, 255, 255));
+        m_listOfColors.Add(new Color32(255, 246, 0, 255));
 
+        //give default colors to the puzzle
         for (int i = 0; i < m_puzzles.Count; i++)
         {
             m_color = new Color32(m_listOfColors[i].r, m_listOfColors[i].g, m_listOfColors[i].b, m_listOfColors[i].a);
@@ -43,26 +45,34 @@ public class PuzzleScript : MonoBehaviour
 
             if (Physics.Raycast(rayPos, Camera.main.transform.forward, out hitInfo, 30, buttonLayer))
             {
-                //hitInfo.transform.GetComponent<Button>().onClick.Invoke();
+                hitInfo.transform.GetComponent<Button>().onClick.Invoke();
 
-                for (int i = 0; i < m_puzzles.Count; i++)
-                {
-                    Debug.Log(hitInfo.collider);
-                    if (hitInfo.collider == m_puzzles[i].m_button.GetComponent<BoxCollider>())
-                    {
-                        if (m_puzzles[i].m_colorIndex == m_listOfColors.Count - 1)
-                        {
-                            m_puzzles[i].m_colorIndex = 0;
-                        }
-                        else
-                        {
-                            m_puzzles[i].m_colorIndex++;
-                        }
-                        m_puzzles[i].m_image.color = m_listOfColors[m_puzzles[i].m_colorIndex];
-                    }
-                }
             }
         }
+    }
+
+    bool CheckMatchingColors()
+    {
+        if (m_puzzles[0].m_image.color == m_listOfColors[4] && m_puzzles[1].m_image.color == m_listOfColors[2] && m_puzzles[2].m_image.color == m_listOfColors[1] &&
+            m_puzzles[3].m_image.color == m_listOfColors[0] && m_puzzles[4].m_image.color == m_listOfColors[3])
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void ButtonClicked(int buttonNumber)
+    {
+        if (m_puzzles[buttonNumber].m_colorIndex == m_listOfColors.Count - 1)
+        {
+            m_puzzles[buttonNumber].m_colorIndex = 0;
+        }
+        else
+        {
+            m_puzzles[buttonNumber].m_colorIndex++;
+        }
+        m_puzzles[buttonNumber].m_image.color = m_listOfColors[m_puzzles[buttonNumber].m_colorIndex];
 
     }
 }

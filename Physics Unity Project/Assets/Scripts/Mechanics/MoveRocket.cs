@@ -11,7 +11,7 @@ public class MoveRocket : MonoBehaviour
     [SerializeField]
     float radius = 40;
     [SerializeField]
-    float DestroyAtDistance = 70;
+    //float DestroyAtDistance = 70f;
 
     // Start is called before the first frame update
     void Start()

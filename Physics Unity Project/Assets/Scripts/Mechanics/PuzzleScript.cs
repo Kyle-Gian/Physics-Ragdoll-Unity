@@ -14,6 +14,7 @@ public class PuzzleScript : MonoBehaviour
     List<Color32> m_listOfColors = new List<Color32>();
 
     Color m_color;
+    ColorBlock m_disabledButtonColor;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +50,17 @@ public class PuzzleScript : MonoBehaviour
 
             }
         }
+        if (CheckMatchingColors())
+        {
+            for (int i = 0; i < m_puzzles.Count; i++)
+            {
+                m_puzzles[i].m_button.interactable = false;
+                m_disabledButtonColor =  m_puzzles[i].m_button.colors;
+                m_disabledButtonColor.normalColor = Color.grey;
+                m_puzzles[i].m_button.colors = m_disabledButtonColor;
+            }
+            Debug.Log("Puzzle Completed");
+        }
     }
 
     bool CheckMatchingColors()
@@ -64,15 +76,17 @@ public class PuzzleScript : MonoBehaviour
 
     public void ButtonClicked(int buttonNumber)
     {
-        if (m_puzzles[buttonNumber].m_colorIndex == m_listOfColors.Count - 1)
+        if (m_puzzles[buttonNumber].m_button.interactable)
         {
-            m_puzzles[buttonNumber].m_colorIndex = 0;
+            if (m_puzzles[buttonNumber].m_colorIndex == m_listOfColors.Count - 1)
+            {
+                m_puzzles[buttonNumber].m_colorIndex = 0;
+            }
+            else
+            {
+                m_puzzles[buttonNumber].m_colorIndex++;
+            }
+            m_puzzles[buttonNumber].m_image.color = m_listOfColors[m_puzzles[buttonNumber].m_colorIndex];
         }
-        else
-        {
-            m_puzzles[buttonNumber].m_colorIndex++;
-        }
-        m_puzzles[buttonNumber].m_image.color = m_listOfColors[m_puzzles[buttonNumber].m_colorIndex];
-
     }
 }

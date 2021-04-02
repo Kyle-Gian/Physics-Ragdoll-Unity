@@ -63,7 +63,7 @@ public class PuzzleScript : MonoBehaviour
         }
     }
 
-    bool CheckMatchingColors()
+    public bool CheckMatchingColors()
     {
         if (m_puzzles[0].m_image.color == m_listOfColors[4] && m_puzzles[1].m_image.color == m_listOfColors[2] && m_puzzles[2].m_image.color == m_listOfColors[1] &&
             m_puzzles[3].m_image.color == m_listOfColors[0] && m_puzzles[4].m_image.color == m_listOfColors[3])

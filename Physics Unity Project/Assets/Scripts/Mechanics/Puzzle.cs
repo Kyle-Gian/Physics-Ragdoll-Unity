@@ -7,9 +7,13 @@ using UnityEngine.UI;
 
 public class Puzzle
 {
-    public Image m_image;
+    public GameObject m_cube;
+
+    [HideInInspector]
+    public Color m_cubeColor;
     public int m_colorIndex = 0;
     public Button m_button;
+
 
     public void SetcolorIndex(int a_colorIndex)
     {

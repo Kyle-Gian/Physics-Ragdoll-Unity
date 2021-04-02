@@ -13,11 +13,15 @@ public class PuzzleScript : MonoBehaviour
     List<Puzzle> m_puzzles = new List<Puzzle>();
     List<Color32> m_listOfColors = new List<Color32>();
 
-    Color m_color;
+    List<Vector3> m_startPos = new List<Vector3>();
+    List<Vector3> m_endPos = new List<Vector3>();
+
+    Color32 m_color;
     ColorBlock m_disabledButtonColor;
     // Start is called before the first frame update
     void Start()
     {
+        
         // Add colors that are on the images to list
         m_listOfColors.Add(new Color32(114, 0, 255, 255));
         m_listOfColors.Add(new Color32(59, 250, 4, 255));
@@ -29,9 +33,11 @@ public class PuzzleScript : MonoBehaviour
         for (int i = 0; i < m_puzzles.Count; i++)
         {
             m_color = new Color32(m_listOfColors[i].r, m_listOfColors[i].g, m_listOfColors[i].b, m_listOfColors[i].a);
-
-            m_puzzles[i].m_image.color = m_color;
+            m_puzzles[i].m_cube.GetComponent<Renderer>().material.color = m_color;
             m_puzzles[i].m_colorIndex = i;
+
+            m_startPos.Add(new Vector3(m_puzzles[i].m_cube.transform.localPosition.x, m_puzzles[i].m_cube.transform.localPosition.y + 1, m_puzzles[i].m_cube.transform.localPosition.z));
+            m_endPos.Add(new Vector3(m_puzzles[i].m_cube.transform.localPosition.x, m_puzzles[i].m_cube.transform.localPosition.y - 1, m_puzzles[i].m_cube.transform.localPosition.z));
 
         }
     }
@@ -39,6 +45,11 @@ public class PuzzleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        for (int i = 0; i < m_puzzles.Count; i++)
+        {
+            RotateFloatingCubes(i);
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 rayPos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
@@ -65,8 +76,8 @@ public class PuzzleScript : MonoBehaviour
 
     public bool CheckMatchingColors()
     {
-        if (m_puzzles[0].m_image.color == m_listOfColors[4] && m_puzzles[1].m_image.color == m_listOfColors[2] && m_puzzles[2].m_image.color == m_listOfColors[1] &&
-            m_puzzles[3].m_image.color == m_listOfColors[0] && m_puzzles[4].m_image.color == m_listOfColors[3])
+        if (m_puzzles[0].m_cubeColor == m_listOfColors[4] && m_puzzles[1].m_cubeColor == m_listOfColors[2] && m_puzzles[2].m_cubeColor == m_listOfColors[1] &&
+            m_puzzles[3].m_cubeColor == m_listOfColors[0] && m_puzzles[4].m_cubeColor == m_listOfColors[3])
         {
             return true;
         }
@@ -86,7 +97,17 @@ public class PuzzleScript : MonoBehaviour
             {
                 m_puzzles[buttonNumber].m_colorIndex++;
             }
-            m_puzzles[buttonNumber].m_image.color = m_listOfColors[m_puzzles[buttonNumber].m_colorIndex];
+            m_puzzles[buttonNumber].m_cube.GetComponent<Renderer>().material.color = m_listOfColors[m_puzzles[buttonNumber].m_colorIndex];
         }
     }
+
+    void RotateFloatingCubes(int cubeNumber)
+    {
+        m_puzzles[cubeNumber].m_cube.transform.localPosition = Vector3.Lerp(m_startPos[cubeNumber], m_endPos[cubeNumber], 5 );
+
+        m_puzzles[cubeNumber].m_cube.transform.Rotate(Vector3.down, 20 * Time.deltaTime);
+
+    }
 }
+
+

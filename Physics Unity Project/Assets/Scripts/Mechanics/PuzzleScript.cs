@@ -18,6 +18,9 @@ public class PuzzleScript : MonoBehaviour
 
     Color32 m_color;
     ColorBlock m_disabledButtonColor;
+
+    float m_fraction = 0;
+    float m_distance = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,8 +39,8 @@ public class PuzzleScript : MonoBehaviour
             m_puzzles[i].m_cube.GetComponent<Renderer>().material.color = m_color;
             m_puzzles[i].m_colorIndex = i;
 
-            m_startPos.Add(new Vector3(m_puzzles[i].m_cube.transform.localPosition.x, m_puzzles[i].m_cube.transform.localPosition.y + 1, m_puzzles[i].m_cube.transform.localPosition.z));
-            m_endPos.Add(new Vector3(m_puzzles[i].m_cube.transform.localPosition.x, m_puzzles[i].m_cube.transform.localPosition.y - 1, m_puzzles[i].m_cube.transform.localPosition.z));
+            m_endPos.Add(new Vector3(m_puzzles[i].m_cube.transform.localPosition.x, m_puzzles[i].m_cube.transform.localPosition.y + m_distance, m_puzzles[i].m_cube.transform.localPosition.z));
+            m_startPos.Add(m_puzzles[i].m_cube.transform.localPosition);
 
         }
     }
@@ -103,10 +106,20 @@ public class PuzzleScript : MonoBehaviour
 
     void RotateFloatingCubes(int cubeNumber)
     {
-        m_puzzles[cubeNumber].m_cube.transform.localPosition = Vector3.Lerp(m_startPos[cubeNumber], m_endPos[cubeNumber], 5 );
-
+        StartCoroutine("LerpBetweenPoints");
         m_puzzles[cubeNumber].m_cube.transform.Rotate(Vector3.down, 20 * Time.deltaTime);
 
+    }
+
+    IEnumerator LerpBetweenPoints(int cubeNumber)
+    {
+
+        if (m_fraction < m_distance)
+        {
+            m_fraction += Time.deltaTime * .05f;
+            m_puzzles[cubeNumber].m_cube.transform.localPosition = Vector3.Lerp(m_startPos[cubeNumber], m_endPos[cubeNumber], m_fraction);
+        }
+        yield return null;
     }
 }
 

@@ -48,10 +48,6 @@ public class PuzzleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < m_puzzles.Count; i++)
-        {
-            RotateFloatingCubes(i);
-        }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -79,8 +75,8 @@ public class PuzzleScript : MonoBehaviour
 
     public bool CheckMatchingColors()
     {
-        if (m_puzzles[0].m_cubeColor == m_listOfColors[4] && m_puzzles[1].m_cubeColor == m_listOfColors[2] && m_puzzles[2].m_cubeColor == m_listOfColors[1] &&
-            m_puzzles[3].m_cubeColor == m_listOfColors[0] && m_puzzles[4].m_cubeColor == m_listOfColors[3])
+        if (m_puzzles[0].m_cube.GetComponent<Renderer>().material.color == m_listOfColors[4] && m_puzzles[1].m_cube.GetComponent<Renderer>().material.color == m_listOfColors[2] && m_puzzles[2].m_cube.GetComponent<Renderer>().material.color == m_listOfColors[1] &&
+            m_puzzles[3].m_cube.GetComponent<Renderer>().material.color == m_listOfColors[0] && m_puzzles[4].m_cube.GetComponent<Renderer>().material.color == m_listOfColors[3])
         {
             return true;
         }
@@ -103,14 +99,6 @@ public class PuzzleScript : MonoBehaviour
             m_puzzles[buttonNumber].m_cube.GetComponent<Renderer>().material.color = m_listOfColors[m_puzzles[buttonNumber].m_colorIndex];
         }
     }
-
-    void RotateFloatingCubes(int cubeNumber)
-    {
-        StartCoroutine("LerpBetweenPoints");
-        m_puzzles[cubeNumber].m_cube.transform.Rotate(Vector3.down, 20 * Time.deltaTime);
-
-    }
-
     IEnumerator LerpBetweenPoints(int cubeNumber)
     {
 

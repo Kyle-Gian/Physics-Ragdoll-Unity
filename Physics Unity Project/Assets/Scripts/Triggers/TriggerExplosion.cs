@@ -5,93 +5,86 @@ using UnityEngine;
 public class TriggerExplosion : MonoBehaviour
 {
     [SerializeField]
-    GameObject objTrigger1 = null;
+    GameObject m_objTrigger1 = null;
     [SerializeField]
-    GameObject objTrigger2 = null;
+    GameObject m_objTrigger2 = null;
 
-    [SerializeField]
-    GameObject buttonTrigger = null;
 
     [SerializeField]
-    GameObject rocket = null;
+    GameObject m_buttonTrigger = null;
 
     [SerializeField]
-    Transform launchPosition1 = null;
+    GameObject m_rocket = null;
+
     [SerializeField]
-    Transform launchPosition2 = null;
+    Transform m_launchPosition1 = null;
+    [SerializeField]
+    Transform m_launchPosition2 = null;
 
-    ParticleSystem particleSystem1 = null;
-    ParticleSystem particleSystem2 = null;
+    ParticleSystem m_particleSystem1 = null;
+    ParticleSystem m_particleSystem2 = null;
 
 
-    PlaceObject objPlacement1 = null;
-    PlaceObject objPlacement2 = null;
+    PlaceObject m_objPlacement1 = null;
+    PlaceObject m_objPlacement2 = null;
 
-    bool buttonCanBeSwitched = false;
-    bool buttonSwitchedOn = false;
+    bool m_buttonCanBeSwitched = false;
+    bool m_buttonSwitchedOn = false;
 
-    int rocketsReleased = 0;
+    int m_rocketsReleased = 0;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        if (objTrigger1 != null)
+        if (m_objTrigger1 != null)
         {
-            objPlacement1 = objTrigger1.GetComponent<PlaceObject>();
-
+            m_objPlacement1 = m_objTrigger1.GetComponent<PlaceObject>();
         }
-        if (objTrigger2 != null)
+        if (m_objTrigger2 != null)
         {
-            objPlacement2 = objTrigger2.GetComponent<PlaceObject>();
-
+            m_objPlacement2 = m_objTrigger2.GetComponent<PlaceObject>();
         }
 
-        particleSystem1 = launchPosition1.GetComponent<ParticleSystem>();
-        particleSystem2 = launchPosition2.GetComponent<ParticleSystem>();
-
-
-        particleSystem1.gameObject.SetActive(false);
-        particleSystem2.gameObject.SetActive(false);
-
+        m_particleSystem1 = m_launchPosition1.GetComponent<ParticleSystem>();
+        m_particleSystem2 = m_launchPosition2.GetComponent<ParticleSystem>();
+        m_particleSystem1.gameObject.SetActive(false);
+        m_particleSystem2.gameObject.SetActive(false);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (objPlacement1 != null && objPlacement2 != null)
+        if (m_objPlacement1 != null && m_objPlacement2 != null)
         {
-            if (objPlacement1.pickUpPlaced && objPlacement2.pickUpPlaced)
+            if (m_objPlacement1.pickUpPlaced && m_objPlacement2.pickUpPlaced)
             {
-                buttonCanBeSwitched = true;
+                m_buttonCanBeSwitched = true;
 
             }
         }
 
-        if (buttonCanBeSwitched)
+        if (m_buttonCanBeSwitched)
         {
             Vector3 rayPos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
-
-            RaycastHit hitInfo;
-            if (Physics.Raycast(rayPos, Camera.main.transform.forward, out hitInfo, 30))
+            if (Input.GetMouseButtonDown(0))
             {
-                if (hitInfo.collider.gameObject == buttonTrigger)
+                RaycastHit hitInfo;
+                if (Physics.Raycast(rayPos, Camera.main.transform.forward, out hitInfo, 30))
                 {
-                    if (Input.GetMouseButtonDown(0))
+                    if (hitInfo.collider.gameObject == m_buttonTrigger)
                     {
-                        buttonSwitchedOn = true;
-                    }
 
+                        m_buttonSwitchedOn = true;
+                    }
                 }
             }
-
         }
 
-        if (buttonSwitchedOn && rocketsReleased <= 0)
+        if (m_buttonSwitchedOn && m_rocketsReleased <= 0)
         {
-            rocketsReleased++;
+            m_rocketsReleased++;
             ReleaseTheRockets();
         }
 
@@ -99,12 +92,12 @@ public class TriggerExplosion : MonoBehaviour
 
     void ReleaseTheRockets()
     {
-        if (rocket != null )
+        if (m_rocket != null)
         {
-            Instantiate(rocket, launchPosition1.position, Quaternion.identity);
-            Instantiate(rocket, launchPosition2.position, Quaternion.identity);
-            launchPosition1.GetComponent<ParticleSystem>().gameObject.SetActive(true);
-            launchPosition2.GetComponent<ParticleSystem>().gameObject.SetActive(true);
+            Instantiate(m_rocket, m_launchPosition1.position, Quaternion.identity);
+            Instantiate(m_rocket, m_launchPosition2.position, Quaternion.identity);
+            m_launchPosition1.GetComponent<ParticleSystem>().gameObject.SetActive(true);
+            m_launchPosition2.GetComponent<ParticleSystem>().gameObject.SetActive(true);
 
 
         }

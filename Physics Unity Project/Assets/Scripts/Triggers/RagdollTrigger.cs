@@ -35,8 +35,6 @@ public class RagdollTrigger : MonoBehaviour
         }
     }
 
-    
-
     IEnumerator ResetPlayer()
     {
         yield return new WaitForSeconds(2f);

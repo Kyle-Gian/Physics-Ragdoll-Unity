@@ -8,6 +8,9 @@ public class PlaceObject : MonoBehaviour
     [SerializeField]
     GameObject pickUp = null;
 
+    Material m_objShader = null;
+
+
     [HideInInspector]
     public bool pickUpPlaced = false;
     // Start is called before the first frame update
@@ -15,6 +18,8 @@ public class PlaceObject : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
+        m_objShader = pickUp.GetComponent<Renderer>().material;
+        m_objShader.SetFloat("_DissolveAmount", 0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,6 +39,7 @@ public class PlaceObject : MonoBehaviour
         if (other.gameObject == pickUp)
         {
             pickUp.GetComponent<Rigidbody>().isKinematic = true;
+            m_objShader.SetFloat("_DissolveAmount", 0.75f);
             pickUpPlaced = true;
 
         }

@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿//Author Kyle Gian
+//Date Created 6/3/2021
+//Last Modified 6/3/2021
+
+//Used to control the player's ragdoll and animation when collided with
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -516,7 +516,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: -1.13, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 1.3699996, z: -0.0000011920929}
+  m_ConnectedAnchor: {x: 0, y: 1.3700044, z: -0.0000011920929}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1041,6 +1041,7 @@ GameObject:
   - component: {fileID: 4536996635358167652}
   - component: {fileID: 4536996635358167653}
   - component: {fileID: 7977516294516376977}
+  - component: {fileID: 5764994649886933938}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Untagged
@@ -1150,6 +1151,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b28f866c1c294834580d3809a19b3934, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5764994649886933938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4536996635358167650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2fba2adb4dd5ca44957978a78e77f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4536996635403353499
@@ -1436,7 +1449,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: -1.13, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 1.3699996, z: -0.0000011920929}
+  m_ConnectedAnchor: {x: 0, y: 1.3700044, z: -0.0000011920929}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1819,7 +1832,7 @@ Transform:
   m_GameObject: {fileID: 4536996635904148290}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 27.19, y: 4.07, z: -2.35}
-  m_LocalScale: {x: 22, y: 1, z: 1}
+  m_LocalScale: {x: 19, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4536996634817660895}
   m_RootOrder: 2

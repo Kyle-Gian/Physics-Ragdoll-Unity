@@ -1,29 +1,34 @@
-﻿using System.Collections;
+﻿//Author Kyle Gian
+//Date Created 15/2/2021
+//Last Modified 6/4/2021
+
+// Gets the players ragdoll component when there is a colision and resets the player to start position after set time
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RagdollTrigger : MonoBehaviour
 {
-    ConfigurableJoint configurableJoint = null;
+    ConfigurableJoint m_configurableJoint = null;
 
-    PlayerRespawn playerRespawn = null;
+    PlayerRespawn m_playerRespawn = null;
 
     private void Start()
     {
-        playerRespawn = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerRespawn>();
+        m_playerRespawn = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerRespawn>();
         if (GetComponent<ConfigurableJoint>() != null)
         {
-            configurableJoint = GetComponent<ConfigurableJoint>();
+            m_configurableJoint = GetComponent<ConfigurableJoint>();
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (configurableJoint != null)
+        if (m_configurableJoint != null)
         {
             if (CompareTag("Floor Spring"))
             {
-                configurableJoint.targetPosition = new Vector3(0, 40, 0);
+                m_configurableJoint.targetPosition = new Vector3(0, 40, 0);
             }
         }
         Ragdoll r = other.gameObject.GetComponentInParent<Ragdoll>();
@@ -37,8 +42,9 @@ public class RagdollTrigger : MonoBehaviour
 
     IEnumerator ResetPlayer()
     {
+        // Restart scene after 2 seconds
         yield return new WaitForSeconds(2f);
-        playerRespawn.ReloadScene();
+        m_playerRespawn.ReloadScene();
 
     }
 }

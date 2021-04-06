@@ -1,22 +1,29 @@
-﻿using System.Collections;
+﻿//Author Kyle Gian
+//Date Created 12/3/2021
+//Last Modified 6/4/2021
+
+// If condition is met door opens using configurable joint
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TriggerDoor : MonoBehaviour
 {
     [SerializeField]
-    PlaceObject placeObject;
-    ConfigurableJoint configurableJoint = null;
+    PlaceObject m_placeObject;
+    ConfigurableJoint m_configurableJoint = null;
     // Start is called before the first frame update
     void Start()
     {
         if (GetComponent<ConfigurableJoint>() != null)
         {
-            configurableJoint = GetComponent<ConfigurableJoint>();
+            m_configurableJoint = GetComponent<ConfigurableJoint>();
         }
-        if (placeObject != null)
+        if (m_placeObject != null)
         {
-            placeObject = GameObject.FindGameObjectWithTag("Floor Plate").GetComponent<PlaceObject>();
+            m_placeObject = GameObject.FindGameObjectWithTag("Floor Plate").GetComponent<PlaceObject>();
 
         }
     }
@@ -24,9 +31,10 @@ public class TriggerDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (placeObject.pickUpPlaced == true)
+        // set door target position when condition is met
+        if (m_placeObject.m_pickUpPlaced == true)
         {
-               configurableJoint.targetPosition = new Vector3(10, 0, 0);           
+               m_configurableJoint.targetPosition = new Vector3(10, 0, 0);           
         }
     }
 }

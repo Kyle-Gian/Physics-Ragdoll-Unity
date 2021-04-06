@@ -1,10 +1,16 @@
-﻿using System.Collections;
+﻿//Author Kyle Gian
+//Date Created 27/3/2021
+//Last Modified 29/3/2021
+
+// Used for the players movement and the animations speed with movement
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RBPlayerMove : MonoBehaviour
 {
-    //Rigidbody rb = null;
     CharacterController controller = null;
     Animator animator = null;
 
@@ -13,7 +19,6 @@ public class RBPlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
 
@@ -27,11 +32,12 @@ public class RBPlayerMove : MonoBehaviour
 
         float MouseX = Input.GetAxis("Mouse X");
         
+        //set the animator variables
         animator.SetFloat("Ypos", vertical);
         animator.SetFloat("Xpos", horizontal);
         animator.SetFloat("Speed", speed);
 
-
+        //movement
         Vector3 move = transform.right * horizontal + transform.forward * vertical;
         move = Vector3.ClampMagnitude(move, 1f);
         controller.Move(move * speed * Time.fixedDeltaTime);

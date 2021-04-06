@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿//Author Kyle Gian
+//Date Created 28/3/2021
+//Last Modified 2/4/2021
+
+//Checks if the puzzle pattern matches the users inputs. If they match open the door and buttons become inactive
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +12,7 @@ using UnityEngine.UI;
 
 public class PuzzleScript : MonoBehaviour
 {
-    [SerializeField] LayerMask buttonLayer;
+    [SerializeField] LayerMask m_buttonLayer;
 
     [SerializeField]
     List<Puzzle> m_puzzles = new List<Puzzle>();
@@ -54,7 +59,8 @@ public class PuzzleScript : MonoBehaviour
             Vector3 rayPos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hitInfo;
 
-            if (Physics.Raycast(rayPos, Camera.main.transform.forward, out hitInfo, 30, buttonLayer))
+            //Check if ray hits button
+            if (Physics.Raycast(rayPos, Camera.main.transform.forward, out hitInfo, 30, m_buttonLayer))
             {
                 hitInfo.transform.GetComponent<Button>().onClick.Invoke();
 
@@ -62,6 +68,7 @@ public class PuzzleScript : MonoBehaviour
         }
         if (CheckMatchingColors())
         {
+            //Deactivate buttons and change color to grey
             for (int i = 0; i < m_puzzles.Count; i++)
             {
                 m_puzzles[i].m_button.interactable = false;
@@ -75,6 +82,7 @@ public class PuzzleScript : MonoBehaviour
 
     public bool CheckMatchingColors()
     {
+        // check the colors are in the correct position
         if (m_puzzles[0].m_cube.GetComponent<Renderer>().material.color == m_listOfColors[4] && m_puzzles[1].m_cube.GetComponent<Renderer>().material.color == m_listOfColors[2] && m_puzzles[2].m_cube.GetComponent<Renderer>().material.color == m_listOfColors[1] &&
             m_puzzles[3].m_cube.GetComponent<Renderer>().material.color == m_listOfColors[0] && m_puzzles[4].m_cube.GetComponent<Renderer>().material.color == m_listOfColors[3])
         {
@@ -86,6 +94,7 @@ public class PuzzleScript : MonoBehaviour
 
     public void ButtonClicked(int buttonNumber)
     {
+        //Get the button that has been pressed and change the color of the corresponding cube
         if (m_puzzles[buttonNumber].m_button.interactable)
         {
             if (m_puzzles[buttonNumber].m_colorIndex == m_listOfColors.Count - 1)

@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//Author Kyle Gian
+//Date Created 18/3/2021
+//Last Modified 20/3/2021
+
+//Checks if the puzzle has been completed. If it has release the door that blocks the next section
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

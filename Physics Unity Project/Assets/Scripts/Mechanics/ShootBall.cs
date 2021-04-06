@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿//Author Kyle Gian
+//Date Created 20/3/2021
+//Last Modified 6/4/2021
+
+// Gets a location based off a object position and spawns bullet prefab in a direction
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

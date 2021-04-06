@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿//Author Kyle Gian
+//Date Created 10/3/2021
+//Last Modified 10/3/2021
+
+//Changes the color of an object, based on if the object is sleeping or not
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

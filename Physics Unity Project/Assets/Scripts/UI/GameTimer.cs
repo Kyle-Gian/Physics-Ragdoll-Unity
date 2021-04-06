@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//Author Kyle Gian
+//Date Created 10/3/2021
+//Last Modified 6/4/2021
+
+//Controls the Game timer and displays the timer and highscore time to a UI element
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -25,18 +32,18 @@ public class GameTimer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Set all UI elements to inactive and lock cursor
         gameCompletedText.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
         exitButton.gameObject.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        //increase the timer and display if level is not complete
         if (!timerFinished)
         {
             currentTime += 1 * Time.deltaTime;
@@ -45,6 +52,7 @@ public class GameTimer : MonoBehaviour
         }
         else
         {
+            //When timer is complete bring up the completed level canvas and displays highscore
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             finishedText.gameObject.SetActive(true);

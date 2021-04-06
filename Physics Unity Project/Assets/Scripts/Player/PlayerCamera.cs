@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿//Author Kyle Gian
+//Date Created 10/3/2021
+//Last Modified 6/4/2021
+
+//Controls the camera movement based off the players position. Allows for moouse movement to rotate around player
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,6 +41,7 @@ public class PlayerCamera : MonoBehaviour
         currentX += Input.GetAxis("Mouse X");
         currentY += Input.GetAxis("Mouse Y");
 
+        //Clamp the values to stop clipping
         currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
         
    }

@@ -1,4 +1,11 @@
-﻿using UnityEngine;
+﻿//Author Kyle Gian
+//Date Created 3/4/2021
+//Last Modified 6/4/2021
+
+//Used to trigger the button with a raycast and activate the button
+
+
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;

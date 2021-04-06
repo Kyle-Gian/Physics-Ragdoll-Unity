@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿//Author Kyle Gian
+//Date Created 17/3/2021
+//Last Modified 6/4/2021
+
+//Used to control when the rockets can be released in the maze.
+//If both objects have been placed and button pressed, Rockets are released.
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,13 +66,16 @@ public class TriggerExplosion : MonoBehaviour
     {
         if (m_objPlacement1 != null && m_objPlacement2 != null)
         {
-            if (m_objPlacement1.pickUpPlaced && m_objPlacement2.pickUpPlaced)
+            //When both objects have been placed, button can now be used
+            if (m_objPlacement1.m_pickUpPlaced && m_objPlacement2.m_pickUpPlaced)
             {
                 m_buttonCanBeSwitched = true;
 
             }
         }
 
+
+        //If the button can be used, check if raycast hits the button on mouse click
         if (m_buttonCanBeSwitched)
         {
             Vector3 rayPos = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
@@ -75,7 +86,6 @@ public class TriggerExplosion : MonoBehaviour
                 {
                     if (hitInfo.collider.gameObject == m_buttonTrigger)
                     {
-
                         m_buttonSwitchedOn = true;
                     }
                 }
@@ -92,6 +102,7 @@ public class TriggerExplosion : MonoBehaviour
 
     void ReleaseTheRockets()
     {
+        //Instantiates rockets at the set position
         if (m_rocket != null)
         {
             Instantiate(m_rocket, m_launchPosition1.position, Quaternion.identity);

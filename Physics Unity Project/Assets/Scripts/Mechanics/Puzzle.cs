@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿//Author Kyle Gian
+//Date Created 2/4/2021
+//Last Modified 6/4/2021
+
+//Puzzle class used to take in information of an object, color and button
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

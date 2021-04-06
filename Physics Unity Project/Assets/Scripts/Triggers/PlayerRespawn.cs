@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿//Author Kyle Gian
+//Date Created 16/3/2021
+//Last Modified 16/3/2021
+
+//stores the start position of the player and uses it as a start position, reloads scene
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;

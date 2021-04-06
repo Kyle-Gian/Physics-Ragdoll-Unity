@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿//Author Kyle Gian
+//Date Created 17/3/2021
+//Last Modified 18/3/2021
+
+//Triggers a canvas with instructions when player enters collider
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿//Author Kyle Gian
+//Date Created 3/4/2021
+//Last Modified 6/4/2021
+
+//Rotates the cubes used in the puzzle 
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

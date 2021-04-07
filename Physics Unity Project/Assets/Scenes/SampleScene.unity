@@ -169,8 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8bc4e8500a61df4a91747dd89ac0e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUp: {fileID: 1217166649}
-  pickUpPlaced: 0
+  m_pickUp: {fileID: 0}
+  m_pickUpPlaced: 0
 --- !u!65 &23322497
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16379,7 +16379,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 804dac2a7c46ee844aa0a22ee92ac1f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16989,7 +16989,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 804dac2a7c46ee844aa0a22ee92ac1f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17046,8 +17046,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8bc4e8500a61df4a91747dd89ac0e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUp: {fileID: 1264965892}
-  pickUpPlaced: 0
+  m_pickUp: {fileID: 0}
+  m_pickUpPlaced: 0
 --- !u!1 &812137102
 GameObject:
   m_ObjectHideFlags: 0
@@ -17603,8 +17603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8bc4e8500a61df4a91747dd89ac0e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUp: {fileID: 2028049136}
-  pickUpPlaced: 0
+  m_pickUp: {fileID: 0}
+  m_pickUpPlaced: 0
 --- !u!65 &872524375
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27170,7 +27170,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 46fa0c0566d40dd4792229036b1814f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

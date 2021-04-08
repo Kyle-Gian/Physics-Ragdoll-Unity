@@ -9,33 +9,23 @@ using UnityEngine;
 
 public class RagdollTrigger : MonoBehaviour
 {
-    ConfigurableJoint m_configurableJoint = null;
-
     PlayerRespawn m_playerRespawn = null;
+    Player m_playerMovement = null;
 
     private void Start()
     {
         m_playerRespawn = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerRespawn>();
-        if (GetComponent<ConfigurableJoint>() != null)
-        {
-            m_configurableJoint = GetComponent<ConfigurableJoint>();
-        }
+        m_playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (m_configurableJoint != null)
-        {
-            if (CompareTag("Floor Spring"))
-            {
-                m_configurableJoint.targetPosition = new Vector3(0, 40, 0);
-            }
-        }
         Ragdoll r = other.gameObject.GetComponentInParent<Ragdoll>();
         if (r != null)
         {
             StartCoroutine("ResetPlayer");
-
+            m_playerMovement.m_playerCanMove = false;
             r.RagdollOn = true;
         }
     }

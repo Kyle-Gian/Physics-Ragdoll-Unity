@@ -35,12 +35,12 @@ public class RBPlayerMove : MonoBehaviour
         //set the animator variables
         animator.SetFloat("Ypos", vertical);
         animator.SetFloat("Xpos", horizontal);
-        animator.SetFloat("Speed", speed);
+        animator.SetFloat("Speed", speed * Time.deltaTime);
 
         //movement
         Vector3 move = transform.right * horizontal + transform.forward * vertical;
         move = Vector3.ClampMagnitude(move, 1f);
-        controller.Move(move * speed * Time.fixedDeltaTime);
+        controller.Move(move * speed * Time.deltaTime);
         transform.Rotate(0, MouseX, 0);
     }
 

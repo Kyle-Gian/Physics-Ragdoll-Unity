@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  DestroyAtDistance: 140
+  DestroyAtDistance: 400
 --- !u!198 &8473357128204878292
 ParticleSystem:
   m_ObjectHideFlags: 0
